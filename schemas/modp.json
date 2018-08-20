@@ -1,0 +1,154 @@
+{
+    "GUID": "38868480-9193-11e8-b902-5339219a8064",
+    "lastModifTS": "2018-07-31T10:08:45.671Z",
+    "persistenceSchemaVersion": "2",
+    "description": "",
+    "comments": "",
+    "author": "",
+    "version": "",
+    "collections": [
+        {
+            "GUID": "16f598c0-919c-11e8-b902-5339219a8064",
+            "type": "object",
+            "description": "This collection maintains a single document per customer. Customer details and account overviews are stored in each document.",
+            "comments": "",
+            "$schema": "",
+            "additionalProperties": false,
+            "properties": [
+                {
+                    "GUID": "9ea3a9f0-94a9-11e8-b902-5339219a8064",
+                    "description": "",
+                    "comments": "",
+                    "dependencies": [],
+                    "required": false,
+                    "id": "",
+                    "name": "_id",
+                    "type": "objectId",
+                    "format": "",
+                    "primaryKey": false,
+                    "relationshipType": "",
+                    "parentRelationship": "",
+                    "childRelationships": [],
+                    "foreignCollection": "",
+                    "foreignField": [],
+                    "sample": "",
+                    "error": {
+                        "name": false
+                    }
+                }
+            ],
+            "definitions": {
+                "type": "definitions",
+                "properties": [],
+                "GUID": "16f830d0-919c-11e8-b902-5339219a8064"
+            },
+            "collectionName": "customers",
+            "capped": false,
+            "validationLevel": "Off",
+            "validationAction": "Warn",
+            "size": "",
+            "max": "",
+            "storageEngineName": "WiredTiger",
+            "collectionUsers": [],
+            "indexes": [],
+            "collation": {},
+            "sharding": {
+                "key": "",
+                "hashed": false,
+                "unique": true,
+                "numInitialChunks": "",
+                "collation": "null",
+                "zone": "",
+                "comments": ""
+            },
+            "bucketId": "14cc0200-919c-11e8-b902-5339219a8064"
+        }
+    ],
+    "buckets": [
+        {
+            "GUID": "14cc0200-919c-11e8-b902-5339219a8064",
+            "name": "modp",
+            "type": "bucket",
+            "description": "Mainframe Offloading Demo Platform. Holds each collection required to support demonstrating collecting customer and supporting entities from one or more relational sources.",
+            "comments": "",
+            "collectionIds": [
+                "16f598c0-919c-11e8-b902-5339219a8064"
+            ],
+            "backgroundColor": {
+                "r": 0,
+                "g": 188,
+                "b": 213,
+                "a": 1
+            },
+            "show": true
+        }
+    ],
+    "views": [],
+    "relationships": [],
+    "users": [],
+    "idToNameHashTable": {
+        "14cc0200-919c-11e8-b902-5339219a8064": "modp",
+        "16f598c0-919c-11e8-b902-5339219a8064": "customers",
+        "9ea3a9f0-94a9-11e8-b902-5339219a8064": "_id"
+    },
+    "definitions": {
+        "type": "definitions",
+        "properties": [],
+        "GUID": "38868481-9193-11e8-b902-5339219a8064"
+    },
+    "externalDefinitions": {
+        "type": "externalDefinitions",
+        "properties": [],
+        "GUID": "38868482-9193-11e8-b902-5339219a8064"
+    },
+    "modelName": "New Model",
+    "dbVersion": "v4.0",
+    "dbVendor": "MongoDB",
+    "hideModelViews": true,
+    "appTarget": "MONGODB",
+    "creationTS": "2018-07-27T11:50:12.936Z",
+    "isCreatedByPlugin": true,
+    "pluginInformation": {
+        "pluginVersion": "",
+        "pluginName": "",
+        "pluginLink": "",
+        "pluginEngineVersion": "1.0.0"
+    },
+    "settings": {
+        "centralPane": {
+            "dbLevel": {
+                "erd": [
+                    {
+                        "GUID": "16f598c0-919c-11e8-b902-5339219a8064",
+                        "x": 205,
+                        "y": 150,
+                        "width": 326,
+                        "height": 163,
+                        "color": {}
+                    }
+                ],
+                "buckets": [
+                    {
+                        "x": 165,
+                        "y": 80,
+                        "GUID": "14cc0200-919c-11e8-b902-5339219a8064"
+                    }
+                ],
+                "collapsedNodes": [],
+                "activeRelationship": "",
+                "activeRelationshipFields": {
+                    "childField": [],
+                    "parentField": []
+                },
+                "selectedCollections": [],
+                "displayColorPicker": false
+            },
+            "collectionLevel": {},
+            "changed": false
+        },
+        "dtDiagram": {
+            "collapsedNodes": [],
+            "details": true
+        }
+    }
+}

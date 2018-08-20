@@ -1,0 +1,81 @@
+version: '2'
+services:
+  zookeeper:
+    image: debezium/zookeeper:${DEBEZIUM_VERSION}
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+    volumes:
+     - ../../model_office_demo_platform_docker_data/zookeeper/data:/zookeeper/data:cached
+    # - ../../model_office_demo_platform_docker_data/zookeeper/logs:/zookeeper/logs
+  kafka:
+    image: debezium/kafka:${DEBEZIUM_VERSION}
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+      - ZOOKEEPER_CONNECT=zookeeper:2181
+    #volumes:
+    # - ../../model_office_demo_platform_docker_data/kafka/data:/kafka/data:cached
+  mysql:
+    image: debezium/example-mysql:${DEBEZIUM_VERSION}
+    ports:
+     - 3306:3306
+    environment:
+     - MYSQL_ROOT_PASSWORD=debezium
+     - MYSQL_USER=mysqluser
+     - MYSQL_PASSWORD=mysqlpw
+    volumes:
+     - ../../model_office_demo_platform_docker_data/mysql:/var/lib/mysql:cached
+  #postgres:
+  #  image: debezium/example-postgres:${DEBEZIUM_VERSION}
+  #  ports:
+  #   - 5432:5432
+  #  environment:
+  #   - POSTGRES_USER=postgres
+  #   - POSTGRES_PASSWORD=postgres
+  connect:
+    image: debezium/connect:${DEBEZIUM_VERSION}
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - mysql
+     #- postgres
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets
+  node_consumer:
+    build: ../node_consumer
+    command: nodemon -L --inspect=0.0.0.0:5858
+    volumes:
+      - ../node_consumer:/code
+    ports:
+      - "8000:8000"
+      - "5858:5858"
+    links:
+      - kafka
+  #back_office:
+  #  image: tomcat
+  #  ports:
+  #    - 8080:8000
+  #  volumes:
+  #    - ../build/back_office.war:/usr/local/tomcat/webapps/back_office.war
+  #  links:
+  #    - mysql
+      #- mongodb
+  mongodb:
+      image: mongo:latest
+      container_name: "mongodb"
+      environment:
+        - MONGO_DATA_DIR=/data/db
+        - MONGO_LOG_DIR=/dev/null
+      volumes:
+        - ../../model_office_demo_platform_docker_data/mongodb/data/db:/data/db:cached
+      ports:
+          - 27017:27017
+      command: mongod --smallfiles --logpath=/dev/null
