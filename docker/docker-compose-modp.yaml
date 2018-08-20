@@ -64,7 +64,7 @@ services:
   #  ports:
   #    - 8080:8000
   #  volumes:
-  #    - ../build/back_office.war:/usr/local/tomcat/webapps/back_office.war
+  #    - ../back_office_web/build:/usr/local/tomcat/webapps
   #  links:
   #    - mysql
       #- mongodb
