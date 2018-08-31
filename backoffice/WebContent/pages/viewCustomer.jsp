@@ -167,7 +167,7 @@
 	        									</div>
 	        									<div class="form-group">
 	        										<label for="cust_dob">Date of Birth</label>
-	        										<input type="date" class="form-control" id="cust_dob" name="cust_dob" value="<c:out value="${cust_details.date_of_birth}" />">
+	        										<input type="date" class="form-control" id="cust_dob" name="cust_dob" value="<fmt:formatDate pattern = "yyyy-MM-dd" value="${cust_details.date_of_birth}"/>">
 	        									</div>
 										</div>
 										<div class="col-md-4">

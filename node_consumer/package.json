@@ -5,7 +5,8 @@
   "main": "test.js",
   "dependencies": {
     "kafka-node": "*",
-    "mongodb": "*"
+    "mongodb": "*",
+    "mathjs": "*"
   },
   "author": "Tim Nutman",
   "license": "0BSD"

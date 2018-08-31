@@ -28,7 +28,7 @@ services:
      - MYSQL_USER=mysqluser
      - MYSQL_PASSWORD=mysqlpw
     volumes:
-     - ../../model_office_demo_platform_docker_data/mysql:/var/lib/mysql:cached
+     - ../../mongodb_model_office_docker_data/mysql:/var/lib/mysql:cached
   #postgres:
   #  image: debezium/example-postgres:${DEBEZIUM_VERSION}
   #  ports:
