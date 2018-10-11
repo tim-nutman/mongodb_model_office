@@ -121,7 +121,7 @@ public class AddTransaction extends HttpServlet {
     		HttpSession session = request.getSession();
         session.setAttribute("acc_id", request.getParameter("acc_id"));
             		
-        String redirectString = "pages/transactions";
+        String redirectString = "v1/pages/transactions";
         	response.sendRedirect(redirectString);
 	}
 

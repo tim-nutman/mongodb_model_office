@@ -84,7 +84,7 @@ public class CreateCustomer extends HttpServlet {
     		dbUtil.db_close();
     		dbUtil = null;
 		
-		String redirectString = "pages/dashboard";
+		String redirectString = "v1/pages/customers";
 		response.sendRedirect(redirectString);
 	}
 

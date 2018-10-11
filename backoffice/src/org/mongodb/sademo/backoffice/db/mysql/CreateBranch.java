@@ -50,7 +50,7 @@ public class CreateBranch extends HttpServlet {
     		dbUtil.db_close();
     		dbUtil = null;
 		
-		String redirectString = "pages/branches";
+		String redirectString = "v1/pages/branches";
 		response.sendRedirect(redirectString);
 	}
 

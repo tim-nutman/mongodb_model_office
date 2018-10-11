@@ -53,7 +53,7 @@ public class CreateProduct extends HttpServlet {
     		dbUtil.db_close();
     		dbUtil = null;
 		
-		String redirectString = "pages/products";
+		String redirectString = "v1/pages/products";
 		response.sendRedirect(redirectString);
 	}
 

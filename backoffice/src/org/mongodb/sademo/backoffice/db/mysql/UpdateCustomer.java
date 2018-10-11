@@ -58,7 +58,7 @@ public class UpdateCustomer extends HttpServlet {
 		
 		Boolean active_customer = false;
 		
-		if (request.getParameter("cust_active").equals("1")) {
+		if (request.getParameter("cust_active").equals("true")) {
 			active_customer = true;
 		}
 		else {
@@ -79,7 +79,7 @@ public class UpdateCustomer extends HttpServlet {
     		HttpSession session = request.getSession();
         session.setAttribute("cust_id", request.getParameter("cust_id"));
     		
-		String redirectString = "pages/viewCustomer";
+		String redirectString = "v1/pages/viewCustomer";
 		response.sendRedirect(redirectString);
 	}
 

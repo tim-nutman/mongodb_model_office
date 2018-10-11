@@ -11,67 +11,67 @@
   </welcome-file-list>
   <servlet>
     <servlet-name>dashboard</servlet-name>
-    <jsp-file>/pages/dashboard.jsp</jsp-file>
+    <jsp-file>/v1/pages/dashboard.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>dashboard</servlet-name>
-    <url-pattern>/pages/dashboard</url-pattern>
+    <url-pattern>/v1/pages/dashboard</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>customers</servlet-name>
-    <jsp-file>/pages/customers.jsp</jsp-file>
+    <jsp-file>/v1/pages/customers.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>customers</servlet-name>
-    <url-pattern>/pages/customers</url-pattern>
+    <url-pattern>/v1/pages/customers</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>viewCustomer</servlet-name>
-    <jsp-file>/pages/viewCustomer.jsp</jsp-file>
+    <jsp-file>/v1/pages/viewCustomer.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>viewCustomer</servlet-name>
-    <url-pattern>/pages/viewCustomer</url-pattern>
+    <url-pattern>/v1/pages/viewCustomer</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>branches</servlet-name>
-    <jsp-file>/pages/branches.jsp</jsp-file>
+    <jsp-file>/v1/pages/branches.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>branches</servlet-name>
-    <url-pattern>/pages/branches</url-pattern>
+    <url-pattern>/v1/pages/branches</url-pattern>
   </servlet-mapping>
    <servlet>
     <servlet-name>productTypes</servlet-name>
-    <jsp-file>/pages/productTypes.jsp</jsp-file>
+    <jsp-file>/v1/pages/productTypes.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>productTypes</servlet-name>
-    <url-pattern>/pages/productTypes</url-pattern>
+    <url-pattern>/v1/pages/productTypes</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>productSubTypes</servlet-name>
-    <jsp-file>/pages/productSubTypes.jsp</jsp-file>
+    <jsp-file>/v1/pages/productSubTypes.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>productSubTypes</servlet-name>
-    <url-pattern>/pages/productSubTypes</url-pattern>
+    <url-pattern>/v1/pages/productSubTypes</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>products</servlet-name>
-    <jsp-file>/pages/products.jsp</jsp-file>
+    <jsp-file>/v1/pages/products.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>products</servlet-name>
-    <url-pattern>/pages/products</url-pattern>
+    <url-pattern>/v1/pages/products</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>transactions</servlet-name>
-    <jsp-file>/pages/transactions.jsp</jsp-file>
+    <jsp-file>/v1/pages/transactions.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>transactions</servlet-name>
-    <url-pattern>/pages/transactions</url-pattern>
+    <url-pattern>/v1/pages/transactions</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CreateCustomer</servlet-name>
@@ -119,7 +119,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateProductType</servlet-name>
-    <url-pattern>/CreateProductType</url-pattern>
+    <url-pattern>/v1/CreateProductType</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CreateProductSubType</servlet-name>
@@ -127,7 +127,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>CreateProductSubType</servlet-name>
-    <url-pattern>/CreateProductSubType</url-pattern>
+    <url-pattern>/v1/CreateProductSubType</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>CreateProduct</servlet-name>
@@ -151,6 +151,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AddTransaction</servlet-name>
-    <url-pattern>/AddTransaction</url-pattern>
+    <url-pattern>/v1/AddTransaction</url-pattern>
   </servlet-mapping>
 </web-app>

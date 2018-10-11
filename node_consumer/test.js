@@ -6,11 +6,12 @@ const math = require('mathjs');
 var Consumer = kafka.Consumer;
 var mdbConnectionString = '';
 //var mongodb;
-var internal_external = "INTERNAL";
+//var internal_external = "INTERNAL";
+var internal_external = "EXTERNAL";
 
 if (internal_external == "EXTERNAL") {
-    //mdbConnectionString = 'mongodb+srv://demo_user:nDgKvMSBMd0WoB2q@demozone-uzy0g.mongodb.net/modp?retryWrites=true';
-    mdbConnectionString = 'mongodb://mongodb';
+    mdbConnectionString = 'mongodb+srv://demo_user:nDgKvMSBMd0WoB2q@demozone-uzy0g.mongodb.net/modp?retryWrites=true';
+    //mdbConnectionString = 'mongodb://mongodb';
 }
 else {
     mdbConnectionString = 'mongodb://mongodb';
@@ -78,42 +79,50 @@ MongoClient.connect(mdbConnectionString, function(err, db) {
 
         // shape the Debezium message to ensure correct data types for MongoDB
         var json_doc = JSON.parse(message.value);
-        if (json_doc.payload.source.table == "customer_details") {
-            // need to set the data_of_birth field to an ISODate String for correct data typing
-            var date = new Date(json_doc.payload.after.date_of_birth);
-            json_doc.payload.after.date_of_birth = date;
-        }
-        if (json_doc.payload.source.table == "products_held") {
-            // need to set the opened field to an ISODate String for correct data typing
-            var date = new Date(json_doc.payload.after.opened);
-            json_doc.payload.after.opened = date;
-        }
-        if (json_doc.payload.source.table == "transactions") {
-            // need to set the trx_date_rec and trx_date_pro fields to an ISODate String for correct data typing
-            var date1 = new Date(json_doc.payload.after.trx_date_rec);
-            var date2 = new Date(json_doc.payload.after.trx_date_pro);
-            json_doc.payload.after.trx_date_rec = date1;
-            json_doc.payload.after.trx_date_pro = date2;
-            // need to set the trx_value to a Decimal128 value
-            json_doc.payload.after.trx_value = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.trx_value,2).toString());
-        }
-        if (json_doc.payload.source.table == "product_catalog") {
-            // need to ensure Decimal types are being used correctly
-            // data comes from Debezium in as FLOAT - need to take the first 2 decimal points
-            // and then specify as a decimal
-            json_doc.payload.after.cr_int_rate = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.cr_int_rate,2).toString());
-            json_doc.payload.after.db_int_rate = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.db_int_rate,2).toString());
-            json_doc.payload.after.fee = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.fee,2).toString());
-        }
         
-        // insert the Debezium Message into MongoDB
-        mongodb.collection("debezium").insert(json_doc);
-        console.log("**** Debezium Msg inserted into MongoDB: DB: " + json_doc.payload.source.db + " : Table: " + json_doc.payload.source.table + " : Operation: " + json_doc.payload.op, " ****");
-        
-        //insertMessage(mongodb, "debezium", json_doc, function () {
-        //})
+            if (json_doc.payload.source.table == "customer_details") {
+                // need to set the data_of_birth field to an ISODate String for correct data typing
+                var date = new Date(json_doc.payload.after.date_of_birth);
+                json_doc.payload.after.date_of_birth = date;
+            }
+            if (json_doc.payload.source.table == "products_held") {
+                // need to set the opened field to an ISODate String for correct data typing
+                var date = new Date(json_doc.payload.after.opened);
+                json_doc.payload.after.opened = date;
+                json_doc.payload.after.available_balance = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.available_balance,2).toString());
+                json_doc.payload.after.total_balance = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.total_balance,2).toString());
+                json_doc.payload.after.acc_limit = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.acc_limit,2).toString());
+    
+            }
+            if (json_doc.payload.source.table == "transactions") {
+                // need to set the trx_date_rec and trx_date_pro fields to an ISODate String for correct data typing
+                var date1 = new Date(json_doc.payload.after.trx_date_rec);
+                var date2 = new Date(json_doc.payload.after.trx_date_pro);
+                json_doc.payload.after.trx_date_rec = date1;
+                json_doc.payload.after.trx_date_pro = date2;
+                // need to set the trx_value to a Decimal128 value
+                json_doc.payload.after.trx_value = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.trx_value,2).toString());
+            }
+            if (json_doc.payload.source.table == "product_catalog") {
+                // need to ensure Decimal types are being used correctly
+                // data comes from Debezium in as FLOAT - need to take the first 2 decimal points
+                // and then specify as a decimal
+                json_doc.payload.after.cr_int_rate = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.cr_int_rate,2).toString());
+                json_doc.payload.after.db_int_rate = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.db_int_rate,2).toString());
+                json_doc.payload.after.fee = mongodbhelper.Decimal128.fromString(math.round(json_doc.payload.after.fee,2).toString());
+            }
+            
+            // insert the Debezium Message into MongoDB
+            mongodb.collection("debezium").insert(json_doc);
+            console.log("**** Debezium Msg inserted into MongoDB: DB: " + json_doc.payload.source.db + " : Table: " + json_doc.payload.source.table + " : Operation: " + json_doc.payload.op, " ****");
+            
+            //insertMessage(mongodb, "debezium", json_doc, function () {
+            //})
+    
+            // what mode are we running in? External processing (e.g. Stitch) or use built-in (below)
 
-        // what mode are we running in? External processing (e.g. Stitch) or use built-in (below)
+
+        
     
         if (internal_external == "EXTERNAL") {
             // do nothing 

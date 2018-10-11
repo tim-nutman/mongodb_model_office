@@ -76,7 +76,7 @@ public class AddProductToCustomer extends HttpServlet {
     		HttpSession session = request.getSession();
         session.setAttribute("cust_id", request.getParameter("cust_id"));
         		
-    		String redirectString = "pages/viewCustomer";
+    		String redirectString = "v1/pages/viewCustomer";
     		response.sendRedirect(redirectString);
 	}
 
