@@ -30,6 +30,8 @@ Development and "testing" performed on a MacBook Pro (15-inch, 2017) running mac
 
 For development purposes if working on the node.js consumer then node.js needs to be installed.
 
+Set the DEBEZIUM_VERSION environment variable (for Debezium Version 1.4, on Mac this would be export DEBEZIUM_VERSION=1.4)
+
 To start the environment first navigate to the docker directory in the project:
 
 ```
